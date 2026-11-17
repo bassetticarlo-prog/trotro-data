@@ -22,3 +22,7 @@ Tutti i dati qui descritti si leggono con richieste di sola lettura (modi OBD 01
 ## Formule
 
 Le formule usano `A`, `B`, `C`, `D` per i byte di dati della risposta (dopo `62` e l'identificativo, o dopo `41` e il PID). `A_s` indica il byte con segno.
+
+## Licenza
+
+I dati di questo repository sono distribuiti con licenza [Creative Commons Attribuzione 4.0 Internazionale (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/deed.it): si possono usare, copiare e modificare, anche per scopi commerciali, citando la fonte, per esempio "Dati: TROTRO OBD-II / trotro-data". Testo completo nel file `LICENSE`.
