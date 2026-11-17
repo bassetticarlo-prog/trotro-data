@@ -1,0 +1,88 @@
+{
+  "schema": "trotro-pack/0.1",
+  "id": "vw-ea288",
+  "name": "VW 2.0 TDI EA288 — valori costruttore (UDS 22)",
+  "version": "0.1.0",
+  "date": "2026-11-17",
+  "applies_to": {
+    "make": "Volkswagen",
+    "engine_family": "EA288",
+    "engine_codes_verified": ["DFG"],
+    "vehicles_verified": ["Tiguan Allspace 2019 2.0 TDI 110 kW DSG"]
+  },
+  "requirements": {
+    "service": "22",
+    "session": "default",
+    "adapter_capabilities": ["ATSH", "uds_passthrough"]
+  },
+  "formula_syntax": "A, B, C, D = byte di dati dopo 62 + DID; A_s = A con segno",
+  "dids": [
+    {
+      "ecu": "engine", "header": "7E0", "response": "7E8", "did": "11B2",
+      "name": {"it": "Temperatura ingresso DPF", "en": "DPF inlet temperature"},
+      "unit": "°C", "formula": "((A*256+B)-2731)/10",
+      "status": "verified", "evidence": "17.11.2026: 100–308 °C durante un tragitto, coerente con uscita e superficie"
+    },
+    {
+      "ecu": "engine", "header": "7E0", "response": "7E8", "did": "1044",
+      "name": {"it": "Temperatura superficie DPF", "en": "DPF surface temperature"},
+      "unit": "°C", "formula": "((A*256+B)-2731)/10",
+      "status": "verified", "evidence": "17.11.2026: sempre compresa tra ingresso e uscita DPF"
+    },
+    {
+      "ecu": "engine", "header": "7E0", "response": "7E8", "did": "10F9",
+      "name": {"it": "Temperatura uscita DPF", "en": "DPF outlet temperature"},
+      "unit": "°C", "formula": "((A*256+B)-2731)/10",
+      "status": "verified", "evidence": "17.11.2026: segue l'ingresso con ritardo termico"
+    },
+    {
+      "ecu": "engine", "header": "7E0", "response": "7E8", "did": "11BE",
+      "name": {"it": "Temperatura olio motore", "en": "Engine oil temperature"},
+      "unit": "°C", "formula": "((A*256+B)-2731)/10",
+      "status": "verified", "evidence": "17.11.2026: 64→97 °C con liquido 68→90 °C"
+    },
+    {
+      "ecu": "engine", "header": "7E0", "response": "7E8", "did": "1ABA",
+      "name": {"it": "Distanza dall'ultima rigenerazione DPF", "en": "Distance since last DPF regeneration"},
+      "unit": "km", "formula": "(A*256+B)/10",
+      "status": "verified", "evidence": "17.11.2026: +10,0 km contro 10,1 km stimati dalla velocità (errore circa 1%)"
+    },
+    {
+      "ecu": "engine", "header": "7E0", "response": "7E8", "did": "1ABE",
+      "name": {"it": "Massa di fuliggine misurata", "en": "Soot mass measured"},
+      "unit": "g", "formula": "(A*256+B)/100",
+      "status": "plausible", "evidence": "17.11.2026: 14,43→16,31 g in 10 km; scala da confermare dopo una rigenerazione"
+    },
+    {
+      "ecu": "engine", "header": "7E0", "response": "7E8", "did": "2609",
+      "name": {"it": "Massa di fuliggine calcolata", "en": "Soot mass calculated"},
+      "unit": "g", "formula": "(A*256+B)/100",
+      "status": "plausible", "evidence": "17.11.2026: 15,55→16,23 g in 10 km, coerente con 1ABE"
+    },
+    {
+      "ecu": "engine", "header": "7E0", "response": "7E8", "did": "14F5",
+      "name": {"it": "Pressione differenziale DPF", "en": "DPF differential pressure"},
+      "unit": "grezzo", "formula": "A*256+B",
+      "status": "plausible", "evidence": "17.11.2026: 15 al minimo (MAF 6 g/s), fino a 227 con MAF 73 g/s; segue la portata d'aria. Unità da confermare (probabilmente hPa)"
+    },
+    {
+      "ecu": "engine", "header": "7E0", "response": "7E8", "did": "1AD4",
+      "name": {"it": "Stato rigenerazione DPF", "en": "DPF regeneration status"},
+      "unit": "", "formula": "A*256+B",
+      "status": "candidate", "evidence": "17.11.2026: sempre 0 senza rigenerazione; significato degli altri valori da osservare"
+    },
+    {
+      "ecu": "engine", "header": "7E0", "response": "7E8", "did": "1AC9",
+      "name": {"it": "Rigenerazioni interrotte", "en": "Interrupted regenerations"},
+      "unit": "", "formula": "A",
+      "status": "candidate", "evidence": "17.11.2026: sempre 0"
+    },
+    {
+      "ecu": "transmission", "header": "7E1", "response": "7E9", "did": "2104",
+      "name": {"it": "Temperatura olio cambio DSG", "en": "DSG oil temperature"},
+      "unit": "°C", "formula": "A",
+      "status": "verified", "evidence": "17.11.2026: 56→81 °C durante il tragitto; la codifica cambia tra versioni di software del cambio"
+    }
+  ],
+  "not_supported_on_dfg": ["208B", "208C", "208D", "2089", "20D8", "406C", "207D", "295A", "114F", "114E", "178C", "1156", "115E"]
+}

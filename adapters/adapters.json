@@ -1,0 +1,75 @@
+{
+  "schema": "trotro-adapters/0.1",
+  "version": "0.1.0",
+  "date": "2026-11-17",
+  "notes": "Catalogo degli adattatori OBD-II provati con TROTRO. 'name_patterns' sono i nomi Bluetooth annunciati; un nome generico (es. OBDII) indica solo una probabilità e va confermato dal test delle capacità.",
+  "adapters": [
+    {
+      "id": "vgate-icar-pro-2s",
+      "maker": "Vgate",
+      "model": "iCar Pro 2S",
+      "reported_as": "ELM327 v2.3",
+      "at_1": "OBDII to RS232 Interpreter",
+      "channels": [
+        {
+          "transport": "ble",
+          "name_patterns": ["IOS-Vlink"],
+          "uart": null,
+          "notes": "Canale UART rilevato in automatico; UUID da registrare al prossimo test"
+        },
+        {
+          "transport": "classic",
+          "name_patterns": ["Android-Vlink"],
+          "notes": "Bluetooth classico (SPP), non ancora provato con TROTRO"
+        }
+      ],
+      "capabilities": {
+        "atsh": "verified",
+        "atcaf0": "ok_response",
+        "uds_passthrough": "verified",
+        "ecus_seen": ["7E8", "7E9"],
+        "latency_010c_ms": {"ble": 81}
+      },
+      "recommended": true,
+      "tested": [
+        {"date": "2026-11-13", "vehicle": "VW Tiguan Allspace 2019 2.0 TDI (DFG)", "transport": "ble"},
+        {"date": "2026-11-17", "vehicle": "VW Tiguan Allspace 2019 2.0 TDI (DFG)", "transport": "ble", "notes": "11 DID UDS letti (pacchetto vw-ea288)"}
+      ]
+    },
+    {
+      "id": "elm327-clone-v15-obdii",
+      "maker": "generico",
+      "model": "Clone ELM327 v1.5 (nome Bluetooth OBDII)",
+      "reported_as": "ELM327 v1.5",
+      "at_1": "OBDII to RS232 Interpreter",
+      "channels": [
+        {
+          "transport": "ble",
+          "name_patterns": ["OBDII"],
+          "uart": {"service": "fff0", "notify": "fff1", "write": "fff2"}
+        },
+        {
+          "transport": "classic",
+          "name_patterns": ["OBDII"],
+          "notes": "Bluetooth classico (SPP), non ancora provato con TROTRO"
+        }
+      ],
+      "capabilities": {
+        "atsh": "verified",
+        "atcaf0": "verified",
+        "uds_passthrough": "no",
+        "ecus_seen": ["7E8"],
+        "latency_010c_ms": {"ble": 177}
+      },
+      "quirks": [
+        "Non fa passare le risposte UDS (servizio 22), nemmeno in formattazione CAN manuale: probabilmente scarta tutto ciò che non è un modo OBD standard",
+        "Non vede la seconda centralina (7E9) anche con ATST FF",
+        "Senza quadro acceso risponde NO DATA a 0100"
+      ],
+      "recommended": false,
+      "tested": [
+        {"date": "2026-11-13", "vehicle": "VW Tiguan Allspace 2019 2.0 TDI (DFG)", "transport": "ble"}
+      ]
+    }
+  ]
+}
