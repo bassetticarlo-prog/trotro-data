@@ -1,7 +1,7 @@
 {
   "schema": "trotro-adapters/0.1",
-  "version": "0.1.1",
-  "date": "2026-11-18",
+  "version": "0.1.2",
+  "date": "2026-11-19",
   "notes": "Catalogo degli adattatori OBD-II provati con TROTRO. 'name_patterns' sono i nomi Bluetooth annunciati; un nome generico (es. OBDII) indica solo una probabilità e va confermato dal test delle capacità.",
   "adapters": [
     {
@@ -32,7 +32,11 @@
           "name_patterns": [
             "Android-Vlink"
           ],
-          "notes": "Bluetooth classico (SPP), non ancora provato con TROTRO"
+          "spp": {
+            "uuid": "00001101-0000-1000-8000-00805F9B34FB",
+            "socket": "rfcomm_secure"
+          },
+          "pairing": "associazione dalle impostazioni Bluetooth di Android"
         }
       ],
       "capabilities": {
@@ -44,7 +48,8 @@
           "7E9"
         ],
         "latency_010c_ms": {
-          "ble": "72-81"
+          "ble": "72-81",
+          "classic": "50-100 (media 69)"
         }
       },
       "recommended": true,
@@ -65,6 +70,12 @@
           "vehicle": "VW Tiguan Allspace 2019 2.0 TDI (DFG)",
           "transport": "ble",
           "notes": "canale UART 18F0/2AF0/2AF1, latenza media 72 ms"
+        },
+        {
+          "date": "2026-11-19",
+          "vehicle": "VW Tiguan Allspace 2019 2.0 TDI (DFG)",
+          "transport": "classic",
+          "notes": "SPP RFCOMM sicuro al primo tentativo; 7E8 e 7E9, modo 09 e UDS 22 F190 come via BLE"
         }
       ]
     },
@@ -91,7 +102,7 @@
           "name_patterns": [
             "OBDII"
           ],
-          "notes": "Bluetooth classico (SPP), non ancora provato con TROTRO"
+          "notes": "Bluetooth classico (SPP): prova del 19.11.2026 avvenuta via BLE, classico ancora da verificare"
         }
       ],
       "capabilities": {
@@ -102,7 +113,7 @@
           "7E8"
         ],
         "latency_010c_ms": {
-          "ble": 177
+          "ble": "141-186 (media 159)"
         }
       },
       "quirks": [
@@ -116,6 +127,12 @@
           "date": "2026-11-13",
           "vehicle": "VW Tiguan Allspace 2019 2.0 TDI (DFG)",
           "transport": "ble"
+        },
+        {
+          "date": "2026-11-19",
+          "vehicle": "VW Tiguan Allspace 2019 2.0 TDI (DFG)",
+          "transport": "ble",
+          "notes": "conferma: solo 7E8, UDS 22 F190 NO DATA"
         }
       ]
     }
