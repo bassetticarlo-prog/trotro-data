@@ -1,8 +1,8 @@
 {
   "schema": "trotro-adapters/0.1",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "date": "2026-11-19",
-  "notes": "Catalogo degli adattatori OBD-II provati con TROTRO. 'name_patterns' sono i nomi Bluetooth annunciati; un nome generico (es. OBDII) indica solo una probabilità e va confermato dal test delle capacità.",
+  "notes": "Catalogo degli adattatori OBD-II provati con TROTRO. 'name_patterns' sono i nomi Bluetooth annunciati (confronto senza maiuscole; '*' vale qualsiasi sequenza). Se 'name_is_generic' è true il nome è comune a molti adattatori: indica solo una probabilità, da confermare con il test delle capacità.",
   "adapters": [
     {
       "id": "vgate-icar-pro-2s",
@@ -25,7 +25,8 @@
             "18f0 (UART: 2af0 notifica, 2af1 scrittura)",
             "e7810a71-73ae-499d-8c15-faa9aef0c3f2 (proprietario Vgate)",
             "ff12"
-          ]
+          ],
+          "name_is_generic": false
         },
         {
           "transport": "classic",
@@ -36,7 +37,8 @@
             "uuid": "00001101-0000-1000-8000-00805F9B34FB",
             "socket": "rfcomm_secure"
           },
-          "pairing": "associazione dalle impostazioni Bluetooth di Android"
+          "pairing": "associazione dalle impostazioni Bluetooth di Android",
+          "name_is_generic": false
         }
       ],
       "capabilities": {
@@ -95,14 +97,8 @@
             "service": "fff0",
             "notify": "fff1",
             "write": "fff2"
-          }
-        },
-        {
-          "transport": "classic",
-          "name_patterns": [
-            "OBDII"
-          ],
-          "notes": "Bluetooth classico (SPP): prova del 19.11.2026 avvenuta via BLE, classico ancora da verificare"
+          },
+          "name_is_generic": true
         }
       ],
       "capabilities": {
@@ -119,7 +115,8 @@
       "quirks": [
         "Non fa passare le risposte UDS (servizio 22), nemmeno in formattazione CAN manuale: probabilmente scarta tutto ciò che non è un modo OBD standard",
         "Non vede la seconda centralina (7E9) anche con ATST FF",
-        "Senza quadro acceso risponde NO DATA a 0100"
+        "Senza quadro acceso risponde NO DATA a 0100",
+        "Solo Bluetooth LE: nessun canale classico (SPP). Android lo elenca tra i dispositivi disponibili, ma non si associa in classico (verificato il 19.11.2026)"
       ],
       "recommended": false,
       "tested": [
@@ -132,7 +129,7 @@
           "date": "2026-11-19",
           "vehicle": "VW Tiguan Allspace 2019 2.0 TDI (DFG)",
           "transport": "ble",
-          "notes": "conferma: solo 7E8, UDS 22 F190 NO DATA"
+          "notes": "conferma: solo 7E8, UDS 22 F190 NO DATA; nessun canale classico"
         }
       ]
     }
