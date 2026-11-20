@@ -1,8 +1,8 @@
 {
-  "schema": "trotro-adapters/0.1",
-  "version": "0.1.4",
-  "date": "2026-11-19",
-  "notes": "Catalogo degli adattatori OBD-II provati con TROTRO. 'name_patterns' sono i nomi Bluetooth annunciati (confronto senza maiuscole; '*' vale qualsiasi sequenza). Se 'name_is_generic' è true il nome è comune a molti adattatori: indica solo una probabilità, da confermare con il test delle capacità.",
+  "schema": "trotro-adapters/0.2",
+  "version": "0.2.0",
+  "date": "2026-11-20",
+  "notes": "Catalogo degli adattatori OBD-II per TROTRO. 'name_patterns': nomi Bluetooth annunciati (confronto senza maiuscole; '*' vale qualsiasi sequenza). 'name_is_generic': nome comune a molti adattatori o non confermato, il riconoscimento è solo probabile. 'status': 'verified' = provato con TROTRO su un'auto reale (vedi 'tested'); 'documented' = dati presi da manuali e fonti pubbliche ('sources'), non ancora provato.",
   "adapters": [
     {
       "id": "vgate-icar-pro-2s",
@@ -79,7 +79,8 @@
           "transport": "classic",
           "notes": "SPP RFCOMM sicuro al primo tentativo; 7E8 e 7E9, modo 09 e UDS 22 F190 come via BLE"
         }
-      ]
+      ],
+      "status": "verified"
     },
     {
       "id": "elm327-clone-v15-obdii",
@@ -131,6 +132,343 @@
           "transport": "ble",
           "notes": "conferma: solo 7E8, UDS 22 F190 NO DATA; nessun canale classico"
         }
+      ],
+      "status": "verified"
+    },
+    {
+      "id": "vgate-vlinker-mc-plus",
+      "maker": "Vgate",
+      "model": "vLinker MC+",
+      "status": "documented",
+      "channels": [
+        {
+          "transport": "classic",
+          "name_patterns": [
+            "vLinker MC-Android"
+          ],
+          "name_is_generic": false,
+          "pin": "1234"
+        },
+        {
+          "transport": "ble",
+          "name_patterns": [
+            "vLinker MC-IOS"
+          ],
+          "name_is_generic": false
+        }
+      ],
+      "capabilities": {
+        "protocols_extra": [
+          "J1939",
+          "CAN grezzo",
+          "GMLAN",
+          "MS-CAN"
+        ]
+      },
+      "notes": "Supportato da FORScan e BimmerCode secondo il produttore.",
+      "recommended": false,
+      "tested": [],
+      "sources": [
+        "https://manuals.plus/vgate/vlinker-mc-bluetooth-obd2-car-diagnostic-scan-tool-for-ios-and-android-manual"
+      ]
+    },
+    {
+      "id": "vgate-vlinker-bm-plus",
+      "maker": "Vgate",
+      "model": "vLinker BM+",
+      "status": "documented",
+      "channels": [
+        {
+          "transport": "classic",
+          "name_patterns": [
+            "vLinker BM-Android"
+          ],
+          "name_is_generic": false,
+          "pin": "1234"
+        },
+        {
+          "transport": "ble",
+          "name_patterns": [
+            "vLinker BM-iOS"
+          ],
+          "name_is_generic": false
+        }
+      ],
+      "capabilities": {},
+      "notes": "Pensato per BMW (BimmerCode).",
+      "recommended": false,
+      "tested": [],
+      "sources": [
+        "https://manuals.plus/m/5109bbffbd92f7c037aeada118705724a52dfdcfff8b7bf10e2a0963267fef0d"
+      ]
+    },
+    {
+      "id": "vgate-vlinker-fs",
+      "maker": "Vgate",
+      "model": "vLinker FS (Bluetooth)",
+      "status": "documented",
+      "channels": [
+        {
+          "transport": "classic",
+          "name_patterns": [
+            "vLinker FS *",
+            "vLinker FS"
+          ],
+          "name_is_generic": false
+        }
+      ],
+      "capabilities": {},
+      "notes": "Il nome contiene il numero di serie (es. 'vLinker FS 23199'). Su iOS usa MFi.",
+      "recommended": false,
+      "tested": [],
+      "sources": [
+        "https://manuals.plus/vgate/vlinker-fs-bluetooth-obd2-car-diagnostic-scan-tool-manual",
+        "https://forum.vgatemall.com/showthread.php?tid=6741"
+      ]
+    },
+    {
+      "id": "vgate-icar-legacy",
+      "maker": "Vgate",
+      "model": "iCar (modelli precedenti) o compatibile",
+      "status": "documented",
+      "channels": [
+        {
+          "transport": "classic",
+          "name_patterns": [
+            "V-LINK",
+            "VLink"
+          ],
+          "name_is_generic": true
+        }
+      ],
+      "capabilities": {},
+      "notes": "Nome usato dai Vgate iCar più vecchi e copiato da molti cloni.",
+      "recommended": false,
+      "tested": [],
+      "sources": [
+        "https://www.carscanner.info/en/android-bluetooth/"
+      ]
+    },
+    {
+      "id": "obdlink-mx-plus",
+      "maker": "OBDLink",
+      "model": "OBDLink MX+",
+      "status": "documented",
+      "channels": [
+        {
+          "transport": "classic",
+          "name_patterns": [
+            "OBDLink MX+",
+            "OBDLink MX+ *"
+          ],
+          "name_is_generic": false
+        }
+      ],
+      "capabilities": {},
+      "notes": "L'associazione va completata entro 2 minuti dalla pressione del tasto Connect.",
+      "recommended": false,
+      "tested": [],
+      "sources": [
+        "https://www.scantool.net/scantool/downloads/264/mxp_qsq_android.pdf"
+      ]
+    },
+    {
+      "id": "obdlink-lx",
+      "maker": "OBDLink",
+      "model": "OBDLink LX",
+      "status": "documented",
+      "channels": [
+        {
+          "transport": "classic",
+          "name_patterns": [
+            "OBDLink LX",
+            "OBDLink LX *"
+          ],
+          "name_is_generic": false
+        }
+      ],
+      "capabilities": {},
+      "recommended": false,
+      "tested": [],
+      "sources": [
+        "https://www.scantool.net/scantool/downloads/181/lx_bt-android_qsg-web.pdf"
+      ]
+    },
+    {
+      "id": "obdlink-cx",
+      "maker": "OBDLink",
+      "model": "OBDLink CX",
+      "status": "documented",
+      "channels": [
+        {
+          "transport": "ble",
+          "name_patterns": [
+            "OBDLink CX",
+            "OBDLink CX*"
+          ],
+          "name_is_generic": false,
+          "uart": {
+            "service": "fff0",
+            "notify": "fff1",
+            "write": "fff2"
+          },
+          "pin": "123456 (solo stack BLE vecchi)"
+        }
+      ],
+      "capabilities": {},
+      "notes": "Solo BLE (5.1). Si associa solo nei primi 5 minuti dall'accensione. Nome annunciato non documentato: riconosciuto dal nome del modello.",
+      "recommended": false,
+      "tested": [],
+      "sources": [
+        "https://support.obdlink.com/support/solutions/articles/43000746707-obdlink-cx-adapter-notes"
+      ]
+    },
+    {
+      "id": "veepeak-obdcheck-ble",
+      "maker": "Veepeak",
+      "model": "OBDCheck BLE / BLE+",
+      "status": "documented",
+      "channels": [
+        {
+          "transport": "classic",
+          "name_patterns": [
+            "VEEPEAK"
+          ],
+          "name_is_generic": false,
+          "pin": "1234"
+        },
+        {
+          "transport": "ble",
+          "name_patterns": [
+            "VEEPEAK"
+          ],
+          "name_is_generic": false
+        }
+      ],
+      "capabilities": {},
+      "quirks": [
+        "Si collega a una sola app alla volta"
+      ],
+      "recommended": false,
+      "tested": [],
+      "sources": [
+        "https://veepeak.com/pages/obdcheck-ble-user-instructions",
+        "https://cdn.shopify.com/s/files/1/0596/9123/7423/files/OBDCheck_BLE_Plus_User_Instructions-English.pdf"
+      ]
+    },
+    {
+      "id": "viecar",
+      "maker": "Viecar",
+      "model": "Viecar (modello da determinare)",
+      "status": "documented",
+      "channels": [
+        {
+          "transport": "classic",
+          "name_patterns": [
+            "Viecar*"
+          ],
+          "name_is_generic": true
+        },
+        {
+          "transport": "ble",
+          "name_patterns": [
+            "Viecar*"
+          ],
+          "name_is_generic": true
+        }
+      ],
+      "capabilities": {},
+      "recommended": false,
+      "tested": [],
+      "sources": [
+        "https://www.carscanner.info/en/android-bluetooth/",
+        "https://www.obdautodoctor.com/blog/new-bluetooth-low-energy-dongles"
+      ]
+    },
+    {
+      "id": "lelink-ble",
+      "maker": "LELink",
+      "model": "LELink BLE",
+      "status": "documented",
+      "channels": [
+        {
+          "transport": "ble",
+          "name_patterns": [
+            "OBDBLE"
+          ],
+          "name_is_generic": true
+        }
+      ],
+      "capabilities": {},
+      "notes": "Solo BLE, senza PIN. Nome annunciato da confermare; esistono contraffazioni.",
+      "recommended": false,
+      "tested": [],
+      "sources": [
+        "https://www.obdautodoctor.com/blog/new-bluetooth-low-energy-dongles"
+      ]
+    },
+    {
+      "id": "carista",
+      "maker": "Carista",
+      "model": "Carista OBD2",
+      "status": "documented",
+      "channels": [
+        {
+          "transport": "classic",
+          "name_patterns": [
+            "Carista*"
+          ],
+          "name_is_generic": true
+        },
+        {
+          "transport": "ble",
+          "name_patterns": [
+            "Carista*"
+          ],
+          "name_is_generic": true
+        }
+      ],
+      "capabilities": {},
+      "notes": "Nome annunciato da confermare.",
+      "recommended": false,
+      "tested": [],
+      "sources": [
+        "https://www.obdautodoctor.com/blog/new-bluetooth-low-energy-dongles"
+      ]
+    },
+    {
+      "id": "elm327-clone-generic",
+      "maker": "generico",
+      "model": "Clone ELM327 generico",
+      "status": "documented",
+      "channels": [
+        {
+          "transport": "classic",
+          "name_patterns": [
+            "OBDII",
+            "OBD2",
+            "OBD II",
+            "OBD-II",
+            "ELM327*"
+          ],
+          "name_is_generic": true,
+          "pin": "1234 o 0000"
+        }
+      ],
+      "capabilities": {
+        "uds_passthrough": "unknown"
+      },
+      "quirks": [
+        "Alcuni cloni gestiscono male le intestazioni estese: le richieste costruttore (modo 22) possono fallire",
+        "Alcuni cloni rallentano il monitoraggio del bus (ATMA)",
+        "Indirizzi Bluetooth 11:22:33:… o 00:00:00:… indicano di solito cloni di bassa qualità"
+      ],
+      "recommended": false,
+      "tested": [],
+      "sources": [
+        "https://www.carscanner.info/choosing-obdii-adapter/",
+        "https://www.carscanner.info/en/android-bluetooth/",
+        "https://industrialmonitordirect.com/blogs/knowledgebase/obd2-bluetooth-dongle-selection-for-nissan-leaf-leaf-spy"
       ]
     }
   ]

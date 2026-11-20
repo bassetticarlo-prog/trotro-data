@@ -13,6 +13,10 @@ Dati aperti per l'app **TROTRO OBD-II**: catalogo degli adattatori OBD-II e pacc
 
 In `adapters.json` ogni canale elenca i nomi Bluetooth annunciati (`name_patterns`, confronto senza maiuscole, `*` per qualsiasi sequenza). Con `name_is_generic: true` il nome è comune a molti adattatori (es. "OBDII") e l'app lo indica solo come probabile.
 
+## Adattatori provati e documentati
+
+Nel catalogo ogni adattatore ha uno `status`: `verified` se è stato provato con TROTRO su un'auto reale (dettagli in `tested`), `documented` se nomi e caratteristiche vengono da manuali e fonti pubbliche (elencate in `sources`). Le correzioni dei nomi Bluetooth reali sono benvenute.
+
 ## Stati dei dati
 
 - **verified** — scala e significato verificati su un'auto reale (indicata nel campo `evidence` o `tested`).
