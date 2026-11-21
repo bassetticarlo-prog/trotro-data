@@ -7,6 +7,7 @@ Dati aperti per l'app **TROTRO OBD-II**: catalogo degli adattatori OBD-II e pacc
 | Percorso | Cosa contiene |
 |---|---|
 | `adapters/adapters.json` | Adattatori provati: nomi Bluetooth, canali, capacità misurate, particolarità note |
+| `pids/obd2_mode01.json` | PID standard del modo 01 (SAE J1979): byte, formule, unità, nomi IT/EN/DE, priorità di lettura |
 | `packs/vw_ea288.json` | Valori costruttore (UDS servizio 22) del 2.0 TDI VW EA288 |
 
 ## Riconoscimento degli adattatori

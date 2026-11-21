@@ -1,0 +1,593 @@
+{
+  "schema": "trotro-pids/0.1",
+  "version": "0.1.0",
+  "date": "2026-11-21",
+  "notes": "PID del modo 01 (SAE J1979). 'bytes' = byte di dati dopo 41 e il PID; formule con A, B, C... come nei pacchetti costruttore. 'priority': fast = letto a ogni giro, slow = ogni pochi secondi. I PID con più valori (es. 67, 77, 78, 83) espongono per ora il primo sensore.",
+  "pids": [
+    {
+      "pid": "04",
+      "bytes": 1,
+      "name": {
+        "it": "Carico motore",
+        "en": "Engine load",
+        "de": "Motorlast"
+      },
+      "unit": "%",
+      "formula": "A*100/255",
+      "min": 0,
+      "max": 100,
+      "decimals": 0,
+      "priority": "fast"
+    },
+    {
+      "pid": "05",
+      "bytes": 1,
+      "name": {
+        "it": "Temperatura liquido",
+        "en": "Coolant temperature",
+        "de": "Kühlmitteltemperatur"
+      },
+      "unit": "°C",
+      "formula": "A-40",
+      "min": -40,
+      "max": 215,
+      "decimals": 0,
+      "priority": "slow"
+    },
+    {
+      "pid": "06",
+      "bytes": 1,
+      "name": {
+        "it": "Correzione breve miscela B1",
+        "en": "Short term fuel trim B1",
+        "de": "Kurzzeit-Gemischkorrektur B1"
+      },
+      "unit": "%",
+      "formula": "(A-128)*100/128",
+      "min": -100,
+      "max": 99.2,
+      "decimals": 1,
+      "priority": "slow"
+    },
+    {
+      "pid": "07",
+      "bytes": 1,
+      "name": {
+        "it": "Correzione lunga miscela B1",
+        "en": "Long term fuel trim B1",
+        "de": "Langzeit-Gemischkorrektur B1"
+      },
+      "unit": "%",
+      "formula": "(A-128)*100/128",
+      "min": -100,
+      "max": 99.2,
+      "decimals": 1,
+      "priority": "slow"
+    },
+    {
+      "pid": "0A",
+      "bytes": 1,
+      "name": {
+        "it": "Pressione carburante",
+        "en": "Fuel pressure",
+        "de": "Kraftstoffdruck"
+      },
+      "unit": "kPa",
+      "formula": "A*3",
+      "min": 0,
+      "max": 765,
+      "decimals": 0,
+      "priority": "slow"
+    },
+    {
+      "pid": "0B",
+      "bytes": 1,
+      "name": {
+        "it": "Pressione collettore",
+        "en": "Intake manifold pressure",
+        "de": "Saugrohrdruck"
+      },
+      "unit": "kPa",
+      "formula": "A",
+      "min": 0,
+      "max": 255,
+      "decimals": 0,
+      "priority": "fast"
+    },
+    {
+      "pid": "0C",
+      "bytes": 2,
+      "name": {
+        "it": "Giri motore",
+        "en": "Engine speed",
+        "de": "Motordrehzahl"
+      },
+      "unit": "giri/min",
+      "formula": "(A*256+B)/4",
+      "min": 0,
+      "max": 16383.75,
+      "decimals": 0,
+      "priority": "fast"
+    },
+    {
+      "pid": "0D",
+      "bytes": 1,
+      "name": {
+        "it": "Velocità",
+        "en": "Vehicle speed",
+        "de": "Geschwindigkeit"
+      },
+      "unit": "km/h",
+      "formula": "A",
+      "min": 0,
+      "max": 255,
+      "decimals": 0,
+      "priority": "fast"
+    },
+    {
+      "pid": "0E",
+      "bytes": 1,
+      "name": {
+        "it": "Anticipo accensione",
+        "en": "Timing advance",
+        "de": "Zündzeitpunkt"
+      },
+      "unit": "°",
+      "formula": "A/2-64",
+      "min": -64,
+      "max": 63.5,
+      "decimals": 1,
+      "priority": "slow"
+    },
+    {
+      "pid": "0F",
+      "bytes": 1,
+      "name": {
+        "it": "Temperatura aria aspirata",
+        "en": "Intake air temperature",
+        "de": "Ansauglufttemperatur"
+      },
+      "unit": "°C",
+      "formula": "A-40",
+      "min": -40,
+      "max": 215,
+      "decimals": 0,
+      "priority": "slow"
+    },
+    {
+      "pid": "10",
+      "bytes": 2,
+      "name": {
+        "it": "Portata d'aria (MAF)",
+        "en": "Mass air flow",
+        "de": "Luftmassenstrom"
+      },
+      "unit": "g/s",
+      "formula": "(A*256+B)/100",
+      "min": 0,
+      "max": 655.35,
+      "decimals": 1,
+      "priority": "fast"
+    },
+    {
+      "pid": "11",
+      "bytes": 1,
+      "name": {
+        "it": "Farfalla",
+        "en": "Throttle position",
+        "de": "Drosselklappenstellung"
+      },
+      "unit": "%",
+      "formula": "A*100/255",
+      "min": 0,
+      "max": 100,
+      "decimals": 0,
+      "priority": "fast"
+    },
+    {
+      "pid": "1F",
+      "bytes": 2,
+      "name": {
+        "it": "Tempo dall'avviamento",
+        "en": "Run time since start",
+        "de": "Laufzeit seit Start"
+      },
+      "unit": "s",
+      "formula": "A*256+B",
+      "min": 0,
+      "max": 65535,
+      "decimals": 0,
+      "priority": "slow"
+    },
+    {
+      "pid": "21",
+      "bytes": 2,
+      "name": {
+        "it": "Distanza con spia accesa",
+        "en": "Distance with MIL on",
+        "de": "Strecke mit MIL"
+      },
+      "unit": "km",
+      "formula": "A*256+B",
+      "min": 0,
+      "max": 65535,
+      "decimals": 0,
+      "priority": "slow"
+    },
+    {
+      "pid": "22",
+      "bytes": 2,
+      "name": {
+        "it": "Pressione rail (relativa)",
+        "en": "Fuel rail pressure (relative)",
+        "de": "Raildruck (relativ)"
+      },
+      "unit": "kPa",
+      "formula": "(A*256+B)*0.079",
+      "min": 0,
+      "max": 5177,
+      "decimals": 0,
+      "priority": "slow"
+    },
+    {
+      "pid": "23",
+      "bytes": 2,
+      "name": {
+        "it": "Pressione rail",
+        "en": "Fuel rail pressure",
+        "de": "Raildruck"
+      },
+      "unit": "kPa",
+      "formula": "(A*256+B)*10",
+      "min": 0,
+      "max": 655350,
+      "decimals": 0,
+      "priority": "fast"
+    },
+    {
+      "pid": "2C",
+      "bytes": 1,
+      "name": {
+        "it": "EGR comandato",
+        "en": "Commanded EGR",
+        "de": "EGR Sollwert"
+      },
+      "unit": "%",
+      "formula": "A*100/255",
+      "min": 0,
+      "max": 100,
+      "decimals": 0,
+      "priority": "slow"
+    },
+    {
+      "pid": "2D",
+      "bytes": 1,
+      "name": {
+        "it": "Errore EGR",
+        "en": "EGR error",
+        "de": "EGR Abweichung"
+      },
+      "unit": "%",
+      "formula": "(A-128)*100/128",
+      "min": -100,
+      "max": 99.2,
+      "decimals": 0,
+      "priority": "slow"
+    },
+    {
+      "pid": "2F",
+      "bytes": 1,
+      "name": {
+        "it": "Livello carburante",
+        "en": "Fuel level",
+        "de": "Tankfüllstand"
+      },
+      "unit": "%",
+      "formula": "A*100/255",
+      "min": 0,
+      "max": 100,
+      "decimals": 0,
+      "priority": "slow"
+    },
+    {
+      "pid": "30",
+      "bytes": 1,
+      "name": {
+        "it": "Avviamenti a caldo dall'azzeramento",
+        "en": "Warm-ups since codes cleared",
+        "de": "Warmläufe seit Löschen"
+      },
+      "unit": "",
+      "formula": "A",
+      "min": 0,
+      "max": 255,
+      "decimals": 0,
+      "priority": "slow"
+    },
+    {
+      "pid": "31",
+      "bytes": 2,
+      "name": {
+        "it": "Distanza dall'azzeramento codici",
+        "en": "Distance since codes cleared",
+        "de": "Strecke seit Löschen"
+      },
+      "unit": "km",
+      "formula": "A*256+B",
+      "min": 0,
+      "max": 65535,
+      "decimals": 0,
+      "priority": "slow"
+    },
+    {
+      "pid": "33",
+      "bytes": 1,
+      "name": {
+        "it": "Pressione atmosferica",
+        "en": "Barometric pressure",
+        "de": "Luftdruck"
+      },
+      "unit": "kPa",
+      "formula": "A",
+      "min": 0,
+      "max": 255,
+      "decimals": 0,
+      "priority": "slow"
+    },
+    {
+      "pid": "34",
+      "bytes": 4,
+      "name": {
+        "it": "Lambda sonda 1",
+        "en": "Lambda sensor 1",
+        "de": "Lambda Sonde 1"
+      },
+      "unit": "λ",
+      "formula": "(A*256+B)*2/65536",
+      "min": 0,
+      "max": 2,
+      "decimals": 3,
+      "priority": "slow"
+    },
+    {
+      "pid": "3C",
+      "bytes": 2,
+      "name": {
+        "it": "Temperatura catalizzatore B1S1",
+        "en": "Catalyst temperature B1S1",
+        "de": "Katalysatortemperatur B1S1"
+      },
+      "unit": "°C",
+      "formula": "(A*256+B)/10-40",
+      "min": -40,
+      "max": 6513.5,
+      "decimals": 0,
+      "priority": "slow"
+    },
+    {
+      "pid": "42",
+      "bytes": 2,
+      "name": {
+        "it": "Tensione centralina",
+        "en": "Control module voltage",
+        "de": "Steuergerätespannung"
+      },
+      "unit": "V",
+      "formula": "(A*256+B)/1000",
+      "min": 0,
+      "max": 65.535,
+      "decimals": 2,
+      "priority": "slow"
+    },
+    {
+      "pid": "43",
+      "bytes": 2,
+      "name": {
+        "it": "Carico assoluto",
+        "en": "Absolute load",
+        "de": "Absolute Last"
+      },
+      "unit": "%",
+      "formula": "(A*256+B)*100/255",
+      "min": 0,
+      "max": 25700,
+      "decimals": 0,
+      "priority": "slow"
+    },
+    {
+      "pid": "44",
+      "bytes": 2,
+      "name": {
+        "it": "Rapporto di equivalenza comandato",
+        "en": "Commanded equivalence ratio",
+        "de": "Soll-Lambda"
+      },
+      "unit": "λ",
+      "formula": "(A*256+B)*2/65536",
+      "min": 0,
+      "max": 2,
+      "decimals": 3,
+      "priority": "slow"
+    },
+    {
+      "pid": "45",
+      "bytes": 1,
+      "name": {
+        "it": "Farfalla relativa",
+        "en": "Relative throttle position",
+        "de": "Relative Drosselklappe"
+      },
+      "unit": "%",
+      "formula": "A*100/255",
+      "min": 0,
+      "max": 100,
+      "decimals": 0,
+      "priority": "fast"
+    },
+    {
+      "pid": "46",
+      "bytes": 1,
+      "name": {
+        "it": "Temperatura esterna",
+        "en": "Ambient air temperature",
+        "de": "Außentemperatur"
+      },
+      "unit": "°C",
+      "formula": "A-40",
+      "min": -40,
+      "max": 215,
+      "decimals": 0,
+      "priority": "slow"
+    },
+    {
+      "pid": "47",
+      "bytes": 1,
+      "name": {
+        "it": "Farfalla B",
+        "en": "Absolute throttle position B",
+        "de": "Drosselklappe B"
+      },
+      "unit": "%",
+      "formula": "A*100/255",
+      "min": 0,
+      "max": 100,
+      "decimals": 0,
+      "priority": "slow"
+    },
+    {
+      "pid": "49",
+      "bytes": 1,
+      "name": {
+        "it": "Pedale acceleratore D",
+        "en": "Accelerator pedal position D",
+        "de": "Fahrpedal D"
+      },
+      "unit": "%",
+      "formula": "A*100/255",
+      "min": 0,
+      "max": 100,
+      "decimals": 0,
+      "priority": "fast"
+    },
+    {
+      "pid": "4A",
+      "bytes": 1,
+      "name": {
+        "it": "Pedale acceleratore E",
+        "en": "Accelerator pedal position E",
+        "de": "Fahrpedal E"
+      },
+      "unit": "%",
+      "formula": "A*100/255",
+      "min": 0,
+      "max": 100,
+      "decimals": 0,
+      "priority": "slow"
+    },
+    {
+      "pid": "4C",
+      "bytes": 1,
+      "name": {
+        "it": "Attuatore farfalla comandato",
+        "en": "Commanded throttle actuator",
+        "de": "Drosselklappe Sollwert"
+      },
+      "unit": "%",
+      "formula": "A*100/255",
+      "min": 0,
+      "max": 100,
+      "decimals": 0,
+      "priority": "slow"
+    },
+    {
+      "pid": "5C",
+      "bytes": 1,
+      "name": {
+        "it": "Temperatura olio motore",
+        "en": "Engine oil temperature",
+        "de": "Motoröltemperatur"
+      },
+      "unit": "°C",
+      "formula": "A-40",
+      "min": -40,
+      "max": 210,
+      "decimals": 0,
+      "priority": "slow"
+    },
+    {
+      "pid": "5E",
+      "bytes": 2,
+      "name": {
+        "it": "Consumo carburante",
+        "en": "Engine fuel rate",
+        "de": "Kraftstoffverbrauch"
+      },
+      "unit": "l/h",
+      "formula": "(A*256+B)/20",
+      "min": 0,
+      "max": 3276.75,
+      "decimals": 1,
+      "priority": "fast"
+    },
+    {
+      "pid": "67",
+      "bytes": 3,
+      "name": {
+        "it": "Temperatura liquido (sensore 1)",
+        "en": "Coolant temperature (sensor 1)",
+        "de": "Kühlmitteltemperatur (Sensor 1)"
+      },
+      "unit": "°C",
+      "formula": "B-40",
+      "min": -40,
+      "max": 215,
+      "decimals": 0,
+      "priority": "slow"
+    },
+    {
+      "pid": "77",
+      "bytes": 5,
+      "name": {
+        "it": "Temperatura aria intercooler B1S1",
+        "en": "Charge air cooler temperature B1S1",
+        "de": "Ladeluftkühler-Temperatur B1S1"
+      },
+      "unit": "°C",
+      "formula": "B-40",
+      "min": -40,
+      "max": 215,
+      "decimals": 0,
+      "priority": "slow"
+    },
+    {
+      "pid": "78",
+      "bytes": 9,
+      "name": {
+        "it": "Temperatura gas di scarico B1S1",
+        "en": "Exhaust gas temperature B1S1",
+        "de": "Abgastemperatur B1S1"
+      },
+      "unit": "°C",
+      "formula": "(B*256+C)/10-40",
+      "min": -40,
+      "max": 6513.5,
+      "decimals": 0,
+      "priority": "slow"
+    },
+    {
+      "pid": "83",
+      "bytes": 9,
+      "name": {
+        "it": "NOx sensore 1",
+        "en": "NOx sensor 1",
+        "de": "NOx Sensor 1"
+      },
+      "unit": "ppm",
+      "formula": "B*256+C",
+      "min": 0,
+      "max": 65535,
+      "decimals": 0,
+      "priority": "slow"
+    }
+  ]
+}
